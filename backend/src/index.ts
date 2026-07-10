@@ -1,11 +1,11 @@
-import express, { Application, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import { env } from "./config/env";
+import { router as importRouter } from "./import/routes";
+import { errors } from "./middleware/errors";
+import { missing } from "./middleware/missing";
 
-dotenv.config();
-
-const app: Application = express();
-const PORT = process.env.PORT || 4500;
+const app = express();
 
 // Middleware
 app.use(cors());
@@ -13,16 +13,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check route
-app.get("/", (req: Request, res: Response) => {
-  res.json({ message: "🚀 Backend is runnssing!", status: "OK" });
+app.get("/", (_req, res) => {
+  res.json({ message: "Backend is running", status: "OK" });
 });
 
-// TODO: Add your routes here
-// import authRoutes from "./routes/auth.routes";
-// app.use("/api/auth", authRoutes);
+app.use("/api/v1/imports", importRouter);
+app.use(missing);
+app.use(errors);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`Server running on http://localhost:${env.PORT}`);
 });
 
 export default app;
