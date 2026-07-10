@@ -1,0 +1,423 @@
+@import "tailwindcss";
+
+/* ================================================================== */
+/*  GrowEasy CSV Importer — Futuristic Green Design System            */
+/* ================================================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- Theme Tokens ------------------------------------------------ */
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-input: var(--bg-input);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-dim: var(--accent-dim);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-success: var(--accent);
+  --color-warning: #ffaa00;
+  --color-error: #ff4466;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-down: slide-down 0.3s ease-out;
+  --animate-pulse-subtle: pulse-subtle 2s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-spin-slow: spin 1.5s linear infinite;
+  --animate-count-up: count-up 0.6s ease-out;
+  --animate-gradient-shift: gradient-shift 3s ease infinite;
+  --animate-particle-float: particle-float 8s ease-in-out infinite;
+  --animate-glow: neon-glow 2s ease-in-out infinite;
+  --animate-grid-scroll: grid-scroll 20s linear infinite;
+  --animate-scanline: scanline 4s linear infinite;
+  --animate-flicker: flicker 0.15s ease-in-out;
+  --animate-border-glow: border-glow 3s ease-in-out infinite;
+}
+
+/* ---- CSS Variables (Light) -------------------------------------- */
+:root {
+  --bg-primary: #f0fdf4;
+  --bg-secondary: #dcfce7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0fdf4;
+  --bg-input: #ffffff;
+
+  --text-primary: #052e16;
+  --text-secondary: #166534;
+  --text-muted: #6b7280;
+
+  --border-default: #bbf7d0;
+  --border-subtle: #dcfce7;
+
+  /* Accent greens — darker for light-mode readability */
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-dim: #065f46;
+  --accent-cyan: #0d9488;
+  --accent-glow: rgba(5, 150, 105, 0.25);
+  --accent-glow-strong: rgba(5, 150, 105, 0.4);
+
+  /* Override Tailwind theme colors at runtime */
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-accent-dim: #065f46;
+  --color-accent-cyan: #0d9488;
+  --color-success: #059669;
+}
+
+/* ---- CSS Variables (Dark) --------------------------------------- */
+.dark {
+  --bg-primary: #020a04;
+  --bg-secondary: #041a0a;
+  --bg-card: rgba(4, 30, 12, 0.65);
+  --bg-card-hover: rgba(10, 50, 22, 0.5);
+  --bg-input: rgba(10, 40, 18, 0.5);
+
+  --text-primary: #e0fff0;
+  --text-secondary: #6ee7a0;
+  --text-muted: #3a7a55;
+
+  --border-default: rgba(0, 255, 136, 0.1);
+  --border-subtle: rgba(0, 255, 136, 0.04);
+
+  /* Accent greens — neon for dark mode */
+  --accent: #00ff88;
+  --accent-hover: #00e67a;
+  --accent-dim: #00cc6a;
+  --accent-cyan: #00ffcc;
+  --accent-glow: rgba(0, 255, 136, 0.25);
+  --accent-glow-strong: rgba(0, 255, 136, 0.4);
+
+  /* Override Tailwind theme colors at runtime */
+  --color-accent: #00ff88;
+  --color-accent-hover: #00e67a;
+  --color-accent-dim: #00cc6a;
+  --color-accent-cyan: #00ffcc;
+  --color-success: #00ff88;
+}
+
+/* ---- Keyframes -------------------------------------------------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-100vh) translateX(40px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(0, 255, 136, 0.3), 0 0 20px rgba(0, 255, 136, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.6), 0 0 40px rgba(0, 255, 136, 0.2);
+  }
+}
+
+@keyframes grid-scroll {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(80px);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: -10%;
+  }
+
+  100% {
+    top: 110%;
+  }
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes border-glow {
+
+  0%,
+  100% {
+    border-color: rgba(0, 255, 136, 0.15);
+  }
+
+  50% {
+    border-color: rgba(0, 255, 136, 0.35);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes progress-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(0, 255, 136, 0.8);
+  }
+}
+
+/* ---- Base Resets ------------------------------------------------ */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Scrollbar -------------------------------------------------- */
+.dark ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 136, 0.15);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 136, 0.3);
+}
+
+/* ---- Gradient text ---------------------------------------------- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cyan) 50%, var(--accent) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ---- Accent gradient bg ----------------------------------------- */
+.accent-gradient {
+  background: linear-gradient(135deg, var(--accent-dim) 0%, var(--accent) 50%, var(--accent-cyan) 100%);
+}
+
+/* ---- Glass card ------------------------------------------------- */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .glass-card {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 1px rgba(0, 255, 136, 0.1), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.08), 0 0 60px rgba(0, 255, 136, 0.04);
+  border-color: rgba(0, 255, 136, 0.2);
+}
+
+/* ---- Grid background -------------------------------------------- */
+.cyber-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.4;
+}
+
+.cyber-grid::before {
+  content: "";
+  position: absolute;
+  inset: -80px 0 0 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: grid-scroll 20s linear infinite;
+}
+
+/* ---- Scanline overlay ------------------------------------------- */
+.scanline::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(180deg, transparent, rgba(0, 255, 136, 0.06), transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ---- Neon border effect ----------------------------------------- */
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.4), transparent 40%, transparent 60%, rgba(0, 255, 204, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.neon-border:hover::before {
+  opacity: 1;
+}
+
+/* ---- Hex tag badge ---------------------------------------------- */
+.hex-badge {
+  font-family: "Geist Mono", "Fira Code", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
