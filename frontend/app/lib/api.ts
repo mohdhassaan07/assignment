@@ -1,10 +1,6 @@
-/* ------------------------------------------------------------------ */
-/*  Backend API client with retry & exponential backoff                */
-/* ------------------------------------------------------------------ */
-
 import type { ApiResponse, ImportResult } from "./types";
 
-const API_BASE = "http://localhost:4500";
+const API_BASE = process.env.API_BASE || "http://localhost:4500";
 const MAX_RETRIES = 3;
 const INITIAL_DELAY_MS = 1_000;
 
