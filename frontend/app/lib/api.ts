@@ -1,6 +1,6 @@
 import type { ApiResponse, ImportResult } from "./types";
 
-const API_BASE = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_API_URL : "http://localhost:4500";
+const API_BASE = "https://assignment-89tf.onrender.com"
 const MAX_RETRIES = 3;
 const INITIAL_DELAY_MS = 1_000;
 
